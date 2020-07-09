@@ -1,5 +1,10 @@
 //immediate invoked function expression
 (function() {
+  let quote = document.getElementById("quote");
+  let author = document.querySelector(".author");
+  let generateButton = document.getElementById("generate-btn");
+
+
   const quotes = [
     {
       quote:
@@ -32,13 +37,14 @@
     }
   ];
 
-  const btn = document.getElementById("generate-btn");
 
-  btn.addEventListener("click", function() {
-    let random = Math.floor(Math.random() * quotes.length);
-    console.log(random);
 
-    document.getElementById("quote").textContent = quotes[random].quote;
-    document.querySelector(".author").textContent = quotes[random].author;
-  });
-})();
+  const getQuote = () => {
+    let randomIndex = Math.floor(Math.random() * quotes.length);
+    let randomQuote = quotes[randomIndex];
+    quote.innerHTML = randomQuote.quote;
+    author.innerHTML = randomQuote.author;
+  };
+
+  generateButton.addEventListener("click", getQuote);
+}) ();
